@@ -18,8 +18,8 @@ var Game = function(rows, columns) {
     this.gameOver = function() {
         let gameOver = false
         // PART A: implementing a winning state
-        // creates all possible sub arrays that can have 4 indexes and filters 
-        // each array if it contains either 4 yellow or 4 red disc connected
+        // Creates all possible sub arrays that can have 4 indexes and filters 
+        // each array if it contains either 4 yellow or 4 red disc connected.
         // This function runs for both vertical, horizontal and diagonal variations
         this.checkConnect4 = function(arr) {
             for (let i = 0; i < arr.length; i++) {
@@ -58,12 +58,12 @@ var Game = function(rows, columns) {
         }
 
         //creates an array from all possible diagonal arrays where the array length 
-        //is greater or equal to 4. (ignores diagonal arrays if their length is less than 4)  
+        //is greater than or equal to 4. (ignores diagonal arrays if their length is less than 4)  
         this.genDiagonalArr = function() {
                 let diagonalArr = []
                 let tempArr = []
                 let rowIndex = 3
-                //top left to right
+                //top row to bottom row'/'
                 for (let j = 0; j < 3; j++) {
                     rowIndex = 3 + j
                     let rowNo = 0
@@ -75,7 +75,7 @@ var Game = function(rows, columns) {
                     diagonalArr.push(tempArr)
                     tempArr = []
                 }
-                //bottom left to right 
+                //bottom row to top row '\' 
                 for (let j = 0; j < 3; j++) {
                     rowIndex = 3 + j
                     let rowNo = 5
@@ -87,7 +87,7 @@ var Game = function(rows, columns) {
                     diagonalArr.push(tempArr)
                     tempArr = []
                 }
-                //top right to left
+                //top row to bottom row'\'
                 for (let j = 0; j < 3; j++) {
                     rowIndex = 3 - j
                     let rowNo = 0
@@ -99,7 +99,7 @@ var Game = function(rows, columns) {
                     diagonalArr.push(tempArr)
                     tempArr = []
                 }
-                //bottom right to left
+                //bottom row to top row '/'
                 for (let j = 0; j < 3; j++) {
                     rowIndex = 3 - j
                     let rowNo = 5
@@ -115,8 +115,8 @@ var Game = function(rows, columns) {
             }
             //checks if 4 same color discs are connected after each play 
             this.checkConnect4(board) //checks default array (horizontal)
-            this.checkConnect4(this.genVerticalArr())
-            this.checkConnect4(this.genDiagonalArr())
+            this.checkConnect4(this.genVerticalArr()) //checks vertical array variations
+            this.checkConnect4(this.genDiagonalArr()) //checks diagonal array variations
     }
 }
 
@@ -125,8 +125,8 @@ var Player = function(game, color) {
     this.color = color
     //PART B: implementing a legal move
     // This function checks if there is already a disc in the last row of the column. 
-    // If column is empty it places the next disc at the bottom. If there is already a disc at the bottom, 
-    // it places the disc in the upper row
+    // If column is empty it places the next disc at the bottom. If there is already 
+    // a disc at the bottom, it places the disc into the upper row.
     this.dropDisc = function(column) { 
         if (!game.gameOverState && column <= 6) {
             this.column = column
